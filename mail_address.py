@@ -4,6 +4,7 @@
 # Created on may 2022
 # This program format the mailing adress
 
+
 def mail_adress(
     full_name,
     street_number,
@@ -26,7 +27,7 @@ def mail_adress(
             postal_code,
         )
     else:
-        full_adress = "{0} \n{1} {2} \n{3} {4}  {5}".format(
+        full_adress = "{0} \n{1} {2} \n{3} {4} {5}".format(
             full_name, street_number, street_name, city_name, province, postal_code
         )
 
@@ -44,10 +45,10 @@ def main():
     if question_for_user.upper() == "Y" or question_for_user.upper() == "YES":
         apartment_number = input("Enter your apartment number: ")
     street_number = input("Enter your street number: ")
-    street_name = input("Enter your street name AND type (Main St, Express Pkwy…): ")
+    street_name = input("Enter your street name: ")
     city_name = input("Enter your city name: ")
-    province = input("Enter your province (as an abbreviation, ex: ON, BC): ")
-    postal_code = input("Enter your postal code (123 456): ")
+    province = input("Enter your province (ON, BC): ")
+    postal_code = input("Enter your postal code: ")
 
     try:
         street_number_int = int(street_number)
