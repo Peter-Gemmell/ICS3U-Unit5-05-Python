@@ -5,87 +5,93 @@
 # This program format the mailing adress
 
 
-def mail_adress(
+def format_address(
     full_name,
-    street_number,
+    house_number,
     street_name,
     city_name,
-    province,
+    province_name,
     postal_code,
     apartment_number=None,
 ):
+    # format address
 
     # process
-    if apartment_number is not None:
-        full_adress = "{0} \n{1}-{2} {3} \n{4} {5}  {6}".format(
-            full_name,
-            apartment_number,
-            street_number,
-            street_name,
-            city_name,
-            province,
-            postal_code,
+    if apartment_number == None:
+        address = "\n{0}\n{1} {2}\n{3} {4}  {5}".format(
+            full_name, house_number, street_name, city_name, province_name, postal_code
         )
     else:
-        full_adress = "{0} \n{1} {2} \n{3} {4} {5}".format(
-            full_name, street_number, street_name, city_name, province, postal_code
+        address = "\n{0}\n{1}-{2} {3}\n{4} {5}  {6}".format(
+            full_name,
+            apartment_number,
+            house_number,
+            street_name,
+            city_name,
+            province_name,
+            postal_code,
         )
+    address = address.upper()
 
-    return full_adress.upper()
+    # output
+    return address
 
 
 def main():
-    # user answers prompts and outputs mailing address
-    apartment = None
+    # this function gets the user input
 
-    # input & output
-    print("This program formats your address to a mailing address.")
-    full_name = input("Enter your full name: ")
-    question_for_user = input("Do you live in an apartment? (y/n): ")
-    if question_for_user.upper() == "Y" or question_for_user.upper() == "YES":
-        apartment_number = input("Enter your apartment number: ")
-    street_number = input("Enter your street number: ")
-    street_name = input("Enter your street name: ")
-    city_name = input("Enter your city name: ")
-    province = input("Enter your province (ON, BC): ")
-    postal_code = input("Enter your postal code: ")
+    # input
+    full_name_from_user = input("Enter your full name : ")
+    apartment_answer_from_user = input("Do you live in an apartment? (y/n) : ")
+    if apartment_answer_from_user == "y" or apartment_answer_from_user == "yes":
+        apartment_number_as_string = input("Enter your apartment number : ")
+    else:
+        apartment_number_as_string = None
+    house_number_as_string = input("Enter your house number : ")
+    street_name_from_user = input(
+        "Enter your street name and type (Main St, Country Dr... : "
+    )
+    city_name_from_user = input("Enter your city : ")
+    province_name_from_user = input(
+        "Enter your province (as an abbreviation, ex. ON, SK...) : "
+    )
+    postal_code_from_user = input("Enter your postal code (A1B 2C3) : ")
 
+    # call function
     try:
-        street_number_int = int(street_number)
-
-        if street_number_int < 0:
-            print("")
-            print("That is an invalid number.")
-        elif apartment is not None:
-            apartment_int = int(apartment_number)
-            if apartment_int < 0:
-                print("")
-                print("That is an invalid number.")
-            else:
-                prompt_list = mail_adress(
-                    full_name,
-                    street_number,
-                    street_name,
-                    city_name,
-                    province,
-                    postal_code,
-                    apartment_number,
-                )
-                print("")
-                print(prompt_list)
-        else:
-            prompt_list = mail_adress(
-                full_name, street_number, street_name, city_name, province, postal_code
+        if (
+            apartment_answer_from_user.upper() == "Y"
+            or apartment_answer_from_user.upper() == "YES"
+        ):
+            apartment_number_from_user = int(apartment_number_as_string)
+            house_number_from_user = int(house_number_as_string)
+            formated_address = format_address(
+                full_name_from_user,
+                house_number_from_user,
+                street_name_from_user,
+                city_name_from_user,
+                province_name_from_user,
+                postal_code_from_user,
+                apartment_number_from_user,
             )
-            print("")
-            print(prompt_list)
+
+        else:
+            house_number_from_user = int(house_number_as_string)
+            formated_address = format_address(
+                full_name_from_user,
+                house_number_from_user,
+                street_name_from_user,
+                city_name_from_user,
+                province_name_from_user,
+                postal_code_from_user,
+            )
+
+        print(formated_address)
 
     except Exception:
-        print("")
-        print("That is an invalid response, please try again.")
+        print("\nInvalid input entered, please try again.")
 
-    finally:
-        print("\nDone.")
+    print("\nDone.")
 
 
 if __name__ == "__main__":
