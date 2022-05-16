@@ -41,21 +41,17 @@ def main():
     # this function gets the user input
 
     # input
-    full_name_from_user = input("Enter your full name : ")
-    apartment_answer_from_user = input("Do you live in an apartment? (y/n) : ")
+    full_name_from_user = input("Enter your full name: ")
+    apartment_answer_from_user = input("Do you live in an apartment (y/n): ")
     if apartment_answer_from_user == "y" or apartment_answer_from_user == "yes":
-        apartment_number_as_string = input("Enter your apartment number : ")
+        apartment_number_as_string = input("Enter your apartment number: ")
     else:
         apartment_number_as_string = None
-    house_number_as_string = input("Enter your house number : ")
-    street_name_from_user = input(
-        "Enter your street name and type (Main St, Country Dr... : "
-    )
-    city_name_from_user = input("Enter your city : ")
-    province_name_from_user = input(
-        "Enter your province (as an abbreviation, ex. ON, SK...) : "
-    )
-    postal_code_from_user = input("Enter your postal code (A1B 2C3) : ")
+    house_number_as_string = input("Enter your house number: ")
+    street_name_from_user = input("Enter your street name: ")
+    city_name_from_user = input("Enter your city: ")
+    province_name_from_user = input("Enter your province (ON, BC): ")
+    postal_code_from_user = input("Enter your postal code: ")
 
     # call function
     try:
@@ -89,7 +85,7 @@ def main():
         print(formated_address)
 
     except Exception:
-        print("\nInvalid input entered, please try again.")
+        print("\nInvalid response, please try again.")
 
     print("\nDone.")
 
